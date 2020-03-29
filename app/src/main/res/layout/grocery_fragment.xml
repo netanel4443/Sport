@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.GroceryFragment"
+    android:background="#ffff"
+    android:clickable="true">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/menuNameGroceryFragment"
+        android:textColor="@color/black"
+        android:fontFamily="@font/davidlibre"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:text="New Menu"
+        android:background="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerviewGroceryFragment"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="50dp"
+        />
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/saveTextViewGroceryFragment"
+        android:background="@drawable/blue_save_rounded_button"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/addGroceryItemBtnGroceryFragment"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/addGroceryItemBtnGroceryFragment"
+        app:layout_constraintBottom_toTopOf="@+id/priceCardViewGroceryFragment"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/blue_plus_rounded_button"
+        />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/priceCardViewGroceryFragment"
+        app:cardElevation="8dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintTop_toBottomOf="@id/recyclerviewGroceryFragment"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/totalPriceTviewGroceryFragment"
+            android:fontFamily="@font/davidlibre"
+            android:textAlignment="center"
+            android:textColor="#ffff"
+            android:textSize="15sp"
+            android:background="#2196F3"
+            />
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

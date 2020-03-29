@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#2196F3">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/containerAddItemDialog"
+        android:orientation="vertical">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="3dp"
+            >
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/itemNameAddItemDialog"
+                android:hint="Item"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:background="@null"/>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="3dp"
+            >
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/minPriceAddItemDialog"
+                android:hint="Min price"
+                android:inputType="number"
+                android:textColor="#000"
+                android:background="@null"
+                android:textSize="15sp"
+                />
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="3dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/maxPriceAddItemDialog"
+                android:inputType="number"
+                android:hint="Max price"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:background="@null"/>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+<Button
+    android:layout_width="100dp"
+    android:layout_height="30dp"
+    android:id="@+id/addOrEditAddItemDialog"
+    android:text="Done"
+    android:textAllCaps="false"
+    android:textColor="@color/black"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/containerAddItemDialog"
+    android:layout_marginTop="30dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/white_rounded_background"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

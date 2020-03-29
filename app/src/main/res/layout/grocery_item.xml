@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mainCardViewGroceryItem"
+    app:cardUseCompatPadding="true"
+    app:cardElevation="3dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:id="@+id/groceryItem"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:id="@+id/groceryItemMinPrice"
+            android:textColor="#000"
+            android:background="@null"
+            android:textSize="15sp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:id="@+id/groceryItemMaxPrice"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:background="@null"
+            android:layout_gravity="center"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="0.1"
+            android:layout_gravity="center"
+            android:id="@+id/editItemBtnGroceryItem"
+            android:background="@drawable/ic_edit"/>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

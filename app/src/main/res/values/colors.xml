@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#2196F3</color>
+    <color name="softBlue">#1881D8</color>
+    <color name="appBackGround">#3b4a4d</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="white">#ffff</color>
+    <color name="colorStatusBar">#3b4a4d</color>
+    <color name="editTextCrusor">#ffff</color>
+    <color name="clipColor">#ffff</color>
+    <color name="Transperent">#15000000</color>
+    <color name="TransparentBackground">#00ffffff</color>
+
+    <color name="BlanchedAlmond">#FFEBCD</color>
+    <color name="NavajoWhite">#FFDEAD</color>
+    <color name="LightPink">#FFB6C1</color>
+    <color name="LightSalmon">#FFA07A</color>
+    <color name="Coral">#FF7F50</color>
+    <color name="DarkOrange">#FF8C00</color>
+    <color name="Salmon">#FA8072</color>
+    <color name="magenta">#F791F7</color>
+    <color name="HotPink">#FF69B4</color>
+    <color name="bright_pink">#FF007F</color>
+    <color name="MediumPurple">#9370DB</color>
+    <color name="violet">#7F00FF</color>
+    <color name="IndianRed">#CD5C5C</color>
+    <color name="Tomato">#FF6347</color>
+    <color name="OrangeRed">#FF4500</color>
+    <color name="red">#FF0000</color>
+    <color name="orange">#FF7F00</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="spring_green">#00FF7F</color>
+    <color name="green">#00FF00</color>
+    <color name="MediumSeaGreen">#3CB371</color>
+    <color name="Teal">#008080</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="DarkTurquoise">#00CED1</color>
+    <color name="fabColor">#03A9F4</color>
+    <color name="azure">#007FFF</color>
+    <color name="blue">#0000FF</color>
+    <color name="titleTabColor">#3b4a4d</color>
+    <color name="titleTextColor">#FFFFFF</color>
+    <color name="titleSelectedTabColor">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="fullyTransarent">#00000000</color>
+
+</resources>
