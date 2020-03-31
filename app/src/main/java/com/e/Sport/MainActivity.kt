@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import com.e.Sport.ui.BaseActivity
 import com.e.Sport.ui.fragments.ListOfMenusFragment
+import com.e.Sport.ui.fragments.ListOfProgramsFragment
 import com.e.Sport.viewmodels.MainActivityViewModel
 import com.e.Sport.utils.addFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,6 +34,9 @@ class MainActivity : BaseActivity() {
 
         addFragmentTview.setOnClickListener{
             addFragment(ListOfMenusFragment(),R.id.frame_layout,"ListOfMenusFragment")
+        }
+        testBtn.setOnClickListener{
+            addFragment(ListOfProgramsFragment(),R.id.frame_layout,"ListOfProgramsFragment")
         }
 
         measureBtn.setOnClickListener {

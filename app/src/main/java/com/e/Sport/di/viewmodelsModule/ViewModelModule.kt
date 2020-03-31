@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.e.Sport.di.anotations.ViewModelKey
 import com.e.Sport.viewmodels.GroceryViewModel
 import com.e.Sport.viewmodels.MainActivityViewModel
+import com.e.Sport.viewmodels.ProgramViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -22,6 +23,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(GroceryViewModel::class)
     abstract fun bindGroceryViewModel(groceryViewModel: GroceryViewModel):ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProgramViewModel::class)
+    abstract fun bindProgramViewModel(programViewModel:ProgramViewModel):ViewModel
 
     @Binds
     @Singleton

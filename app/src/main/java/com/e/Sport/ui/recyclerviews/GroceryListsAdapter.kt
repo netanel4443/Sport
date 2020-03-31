@@ -13,7 +13,7 @@ class GroceryListsAdapter(
     val onClick:(String, ClickTypes)->Unit)
     :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    enum class ClickTypes{ click,longClick }
+    enum class ClickTypes{ click,deleteClick }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -24,7 +24,6 @@ class GroceryListsAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ViewHolder){
             holder.listName.text=listsNames.elementAt(position)
-            println("sdf ${listsNames.elementAt(position)}")
         }
     }
 
@@ -38,7 +37,7 @@ class GroceryListsAdapter(
 
         init {
             listName.setOnClickListener { onClick(listName.text.toString(),ClickTypes.click) }
-            deleteBtn.setOnClickListener { onClick(listName.text.toString(),ClickTypes.longClick) }
+            deleteBtn.setOnClickListener { onClick(listName.text.toString(),ClickTypes.deleteClick) }
         }
     }
 }

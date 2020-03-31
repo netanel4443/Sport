@@ -19,10 +19,15 @@ class BaseApplication:DaggerApplication() {
 
         Realm.init(this)
 
-        val realmConfig = RealmConfiguration.Builder()
+        val groceriesRealmConfig = RealmConfiguration.Builder()
             .name("grocerylist.realm")
             .deleteRealmIfMigrationNeeded()
             .build()
-        Realm.setDefaultConfiguration(realmConfig)
+        Realm.setDefaultConfiguration(groceriesRealmConfig)
+
+        val sportRealmConfig =
+            RealmConfiguration.Builder()
+            .name("training_program.realm")
+            .build()
     }
 }

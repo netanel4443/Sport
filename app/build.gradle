@@ -69,7 +69,7 @@ dependencies {
     //layoutmanager
     implementation 'rouchuan.viewpagerlayoutmanager:viewpagerlayoutmanager:2.0.22'
     //memory leaks detection
-     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-3'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-3'
     //dagger2
     implementation "com.google.dagger:dagger:2.27"
     implementation "com.google.dagger:dagger-android:2.27"

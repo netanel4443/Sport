@@ -1,7 +1,8 @@
 package com.e.Sport.usecases
 
 import com.e.Sport.realmDB.repo.GroceryMenusDB
-import com.e.Sport.ui.recyclerviews.GroceryRecycler.GroceryItem
+import com.e.Sport.data.GroceryItem
+import io.reactivex.Completable
 import io.reactivex.Observable
 import javax.inject.Inject
 import kotlin.math.abs
@@ -17,8 +18,8 @@ class GroceriesUseCases @Inject constructor(
         return Pair(min,max)
      }
 
-    fun saveMenu(list:HashMap<String,GroceryItem>,prevMenuName:String,newMenuName:String,totalPrice: Pair<Float, Float>) {
-        repo.saveGroceryListToDB(list,prevMenuName,newMenuName,totalPrice)
+    fun saveMenu(list:HashMap<String, GroceryItem>, prevMenuName:String, newMenuName:String, totalPrice: Pair<Float, Float>):Completable {
+        return repo.saveGroceryListToDB(list,newMenuName,totalPrice)
     }
 
     fun getGroceryLists(): Observable<HashMap<String,HashMap<String, GroceryItem>>> {
@@ -47,8 +48,8 @@ class GroceriesUseCases @Inject constructor(
        return totalPriceCalculation(totalMin,totalMax,totalPrice,minOperator,maxOperator )
     }
 
-    fun deleteMenu(name: String) {
-        repo.deleteFromDB(name)
+    fun deleteMenu(name: String):Completable {
+        return repo.deleteFromDB(name)
     }
 
 

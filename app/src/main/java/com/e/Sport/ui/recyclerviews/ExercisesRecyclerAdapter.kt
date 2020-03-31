@@ -8,11 +8,12 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.e.Sport.R
+import com.e.Sport.data.Exercise
 import com.e.Sport.data.GroceryItem
 
-class GroceryRecyclerAdapter(
-    var groceryList:HashMap<String, GroceryItem>,
-    val click:(GroceryItem)->Unit)
+class ExercisesRecyclerAdapter(
+    var groceryList:HashMap<String, Exercise>,
+    val click:(Exercise)->Unit)
             :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflter=LayoutInflater.from(parent.context)
@@ -28,8 +29,8 @@ class GroceryRecyclerAdapter(
         if (holder is ViewHolder){
         val item=groceryList.entries.elementAt(position).value
 
-        holder.minPrice.text= item.minPrice.toString()
-        holder.maxPrice.text=item.maxPrice.toString()
+        holder.minPrice.text= item.reps.toString()
+        holder.maxPrice.text=item.sets.toString()
         holder.itemName.text=item.name
         }
     }
@@ -40,6 +41,7 @@ class GroceryRecyclerAdapter(
         val maxPrice=itemView.findViewById(R.id.groceryItemMaxPrice) as TextView
         val itemName=itemView.findViewById(R.id.groceryItem) as TextView
         val editButton=itemView.findViewById(R.id.editItemBtnGroceryItem) as Button
+
         init {
             editButton.setOnClickListener{
                 click(groceryList.entries.elementAt(adapterPosition).value)}

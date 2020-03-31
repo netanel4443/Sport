@@ -3,7 +3,7 @@ package com.e.Sport.realmDB.repo
 import android.util.Log
 import com.e.Sport.realmDB.realmObjects.ListOfGroceriesRealmObjects
 import com.e.Sport.realmDB.realmObjects.GroceriesRealmObject
-import com.e.Sport.ui.recyclerviews.GroceryRecycler.GroceryItem
+import com.e.Sport.data.GroceryItem
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -59,40 +59,40 @@ class GroceryMenusDB @Inject constructor() {
         return Observable.just(prices)
     }
 
-    fun deleteFromDB(name:String) {
-        Completable.fromAction {
+    fun deleteFromDB(name:String):Completable {
+    return    Completable.create {emitter->
             val realm = Realm.getDefaultInstance()
             try {
                 realm.executeTransaction {
                     val groceryListObj = it.where(ListOfGroceriesRealmObjects::class.java)
-                        .contains("groceryListName", name)
+                        .equalTo("groceryListName", name)
                         .findFirst()
                     groceryListObj?.deleteFromRealm()
                 }
-            } catch (e: Exception) {
-                Log.e("RealmError", e.printStackTrace().toString())
-            } finally {
                 realm?.close()
+                emitter.onComplete()
+            } catch (e: Exception) {
+                emitter.onError(e)
             }
         }.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe()
+        //    .subscribe()
     }
 
-    fun saveGroceryListToDB(list:HashMap<String,GroceryItem>,
-                            prevMenuName:String,newMenuName:String,
-                            totalPrice:Pair<Float,Float>) {
-        Completable.fromAction {
+    fun saveGroceryListToDB(list:HashMap<String, GroceryItem>,
+                             newMenuName:String,
+                            totalPrice:Pair<Float,Float>):Completable {
+       return Completable.create {emitter->
             val realm = Realm.getDefaultInstance()
 
             try {
                 realm.executeTransaction {
-                    var groceryListObj = it.where(ListOfGroceriesRealmObjects::class.java)
-                        .contains("groceryListName", prevMenuName)
+                  /*  var groceryListObj = it.where(ListOfGroceriesRealmObjects::class.java)
+                        .equalTo("groceryListName", prevMenuName)
                         .findFirst()
-                    groceryListObj?.deleteFromRealm()
+                    groceryListObj?.deleteFromRealm()*/
 
-                    groceryListObj =
+                   val groceryListObj =
                         realm.createObject(ListOfGroceriesRealmObjects::class.java, newMenuName)
 
                     list.values.forEach {
@@ -108,13 +108,15 @@ class GroceryMenusDB @Inject constructor() {
                     groceryListObj.maxPrice = totalPrice.second
                     realm.insertOrUpdate(groceryListObj!!)
                 }
-            } catch (e: Exception) {
-                Log.e("RealmError", e.printStackTrace().toString())
-            } finally {
                 realm?.close()
+                emitter.onComplete()
+            }
+            catch (e: Exception) {
+                realm?.close()
+                emitter.onError(e)
             }
         }.subscribeOn(Schedulers.io())
          .observeOn(AndroidSchedulers.mainThread())
-         .subscribe()
+       //  .subscribe()
     }
 }

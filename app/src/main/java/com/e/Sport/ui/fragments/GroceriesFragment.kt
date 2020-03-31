@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.e.Sport.R
 import com.e.Sport.ui.dialogs.AddItemDialog
-import com.e.Sport.ui.recyclerviews.GroceryRecycler.GroceryItem
+import com.e.Sport.data.GroceryItem
 import com.e.Sport.ui.recyclerviews.GroceryRecyclerAdapter
 import com.e.Sport.ui.recyclerviews.ItemHelper
 import com.e.Sport.viewmodels.GroceryViewModel
@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.grocery_fragment.*
 import kotlinx.android.synthetic.main.grocery_fragment.view.*
 import javax.inject.Inject
 
-class GroceryFragment : DaggerFragment() {
+class GroceriesFragment : DaggerFragment() {
 
     @Inject lateinit var provider: ViewModelProvider.Factory
 
@@ -28,7 +28,7 @@ class GroceryFragment : DaggerFragment() {
     private lateinit var viewModel: GroceryViewModel
     private lateinit var groceryAdapter: GroceryRecyclerAdapter
 
-    private var groceryList=HashMap<String,GroceryItem>()
+    private var groceryList=HashMap<String, GroceryItem>()
     private var prevMenuName=""
 
     override fun onAttach(context: Context) {
@@ -62,7 +62,9 @@ class GroceryFragment : DaggerFragment() {
         return view
     }
 
-    private fun addNewItem() = AddItemDialog().showDialog(ctx,GroceryItem()){
+    private fun addNewItem() = AddItemDialog().showDialog(ctx,
+        GroceryItem()
+    ){
             if (it.name.isNotBlank()) viewModel.addItem(it,groceryList)
     }
 
