@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.e.Sport.data.Exercise
 import com.e.Sport.usecases.ExerciseUseCases
 import com.e.Sport.viewmodels.States.ProgramSate
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -70,12 +71,24 @@ class ProgramViewModel @Inject constructor(
                           state.value=  ProgramSate.HideProgress }))
     }
 
+    fun deleteExercise(name: String) {
+        state.value=ProgramSate.DeleteExercise(name)
+    }
+
+    fun immutableExerciseList(){
+       compositeDisposable.add(useCases.immutableExerciseList()
+            .subscribeOn(Schedulers.io())
+            .doOnSubscribe {state.value=ProgramSate.ShowProgress  }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                println(" sizef ${it.size}")
+                state.value=ProgramSate.HideProgress
+                state.value=ProgramSate.ShowConstExerciseList(it)},
+                       {it.printStackTrace()
+                        state.value=ProgramSate.HideProgress }))
+    }
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
-    }
-
-    fun deleteExercise(name: String) {
-        state.value=ProgramSate.DeleteExercise(name)
     }
 }

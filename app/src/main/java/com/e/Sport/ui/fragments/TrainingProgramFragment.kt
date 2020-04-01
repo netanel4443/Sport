@@ -14,10 +14,13 @@ import com.e.Sport.data.Exercise
 
 import com.e.Sport.R
 import com.e.Sport.ui.dialogs.AddOrChangeExerciseDialog
+import com.e.Sport.ui.dialogs.ListDialog
 import com.e.Sport.ui.recyclerviews.ExercisesRecyclerAdapter
 import com.e.Sport.ui.recyclerviews.ItemHelper
+import com.e.Sport.utils.rxutils.throttleFirstClick
 import com.e.Sport.viewmodels.ProgramViewModel
 import com.e.Sport.viewmodels.States.ProgramSate
+import com.jakewharton.rxbinding.view.RxView
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_training_program.*
 import kotlinx.android.synthetic.main.fragment_training_program.view.*
@@ -35,6 +38,7 @@ class TrainingProgramFragment : DaggerFragment() {
     private lateinit var viewModel: ProgramViewModel
     private lateinit var adapter: ExercisesRecyclerAdapter
 
+    private val immutableMap=HashMap<String,Boolean>()
     private var exerciseHmap=HashMap<String, Exercise>()
     private var prevProgramName=""
 
@@ -53,7 +57,7 @@ class TrainingProgramFragment : DaggerFragment() {
         val addBtn=view.addExerciseBtnTrainingProgramFragment
         val programEditText=view.programNameTrainingProgramFragment
         val recyclerView=view.recyclerviewTrainingProgramFragment
-
+        val exerciseList=view.immutableExercisesListTrainingProgramFragment
 
         viewModel=ViewModelProvider(activity!!,provider)[ProgramViewModel::class.java]
 
@@ -68,6 +72,15 @@ class TrainingProgramFragment : DaggerFragment() {
             addOrUpdateExerciseDialog(Exercise())
            // viewModel.addExercise(Exercise(UUID.randomUUID().toString()))
         }
+
+        RxView.clicks(exerciseList)
+        .throttleFirstClick()
+        .filter {immutableMap.isEmpty()  }
+        .subscribe { viewModel.immutableExerciseList() }
+
+
+
+
 
         return view
     }
@@ -97,6 +110,7 @@ class TrainingProgramFragment : DaggerFragment() {
                 is ProgramSate.AddExercise->addExercise(state.exercise)
                 is ProgramSate.GetClickedProgramName->getProgram(state.name,state.program)
                 is ProgramSate.DeleteExercise->deleteExercise(state.name)
+                is ProgramSate.ShowConstExerciseList->showConstExerciseList(state.list)
             }
         })
     }
@@ -123,6 +137,14 @@ class TrainingProgramFragment : DaggerFragment() {
         exerciseHmap.putAll(program)
         prevProgramName=name
         programNameTrainingProgramFragment.setText(name)
+    }
+    fun showConstExerciseList(list:LinkedHashMap<String,Boolean>){
+        ListDialog(ctx).show(list,exerciseHmap.keys.toHashSet()) { name: String, isChecked: Boolean ->
+            when (isChecked) {
+            true->viewModel.addExercise(Exercise(name))
+            false->viewModel.deleteExercise(name)
+        }
+        }
     }
 
   }

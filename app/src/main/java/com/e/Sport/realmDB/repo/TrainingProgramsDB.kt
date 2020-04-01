@@ -2,18 +2,25 @@ package com.e.Sport.realmDB.repo
 
 import android.util.Log
 import com.e.Sport.data.Exercise
+import com.e.Sport.realmDB.configurations.ExercisesRealmConfig
 import com.e.Sport.realmDB.configurations.TrainingProgramsRealmConfig
+import com.e.Sport.realmDB.realmObjects.ExerciseNameRealmObject
 import com.e.Sport.realmDB.realmObjects.ExercisesRealmObject
 import com.e.Sport.realmDB.realmObjects.ListOfTrainingProgramsRealmObjects
 import io.reactivex.Completable
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.realm.Realm
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.HashMap
+import kotlin.collections.LinkedHashMap
 
 class TrainingProgramsDB @Inject constructor(
-      private val realmConfig: TrainingProgramsRealmConfig) {
+      private val realmConfig: TrainingProgramsRealmConfig,
+      private val exerciseConfig:ExercisesRealmConfig  ) {
 
     fun getProgramsNames(): Observable<HashMap<String, HashMap<String, Exercise>>> {
         return Observable.create { emitter ->
@@ -108,5 +115,23 @@ class TrainingProgramsDB @Inject constructor(
        }.subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
      //   .subscribe()
+    }
+
+    fun immutableExerciseList(): Single<LinkedHashMap<String, Boolean>> {
+      return  Single.fromCallable{
+          val realm = Realm.getInstance(exerciseConfig.config())
+          val exerciseHset=LinkedHashMap<String,Boolean>()
+          realm.use { realm ->
+              realm.executeTransaction {
+                  val results =
+                      it.where(ExerciseNameRealmObject::class.java)
+                          .findAll()
+                  results.forEach {
+                      it?.exerciseName?.let { name -> exerciseHset[name]=it.title!! }
+                  }
+              }
+          }
+          exerciseHset
+      }
     }
 }

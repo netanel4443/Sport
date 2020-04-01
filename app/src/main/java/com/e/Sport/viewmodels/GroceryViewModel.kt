@@ -21,6 +21,7 @@ class GroceryViewModel @Inject constructor(
         private var prices=HashMap<String,Pair<Float,Float>>()
         private var menuName=MutableLiveData<String>()
         private var progressBar=MutableLiveData("hide")
+
         fun addItem(item: GroceryItem, list:HashMap<String, GroceryItem>){
             groceryItem=item
             list[item.name]=item

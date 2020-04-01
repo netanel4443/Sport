@@ -23,6 +23,8 @@ import com.e.Sport.utils.replaceAll
 import com.e.Sport.viewmodels.ProgramViewModel
 import com.e.Sport.viewmodels.States.ProgramSate
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.fragment_list_of_programs.view.*
+import kotlinx.android.synthetic.main.fragment_training_program.view.*
 import javax.inject.Inject
 
 
@@ -49,8 +51,8 @@ class ListOfProgramsFragment : DaggerFragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view= inflater.inflate(R.layout.fragment_list_of_programs, container, false)
-        val addBtn=view.findViewById(R.id.addProgramBtnListOfProgramsFragment) as Button
-        val recyclerView=view.findViewById(R.id.recyclerViewListOfProgramsFragment) as RecyclerView
+        val addBtn=view.addProgramBtnListOfProgramsFragment
+        val recyclerView=view.recyclerViewListOfProgramsFragment
 
         initRecyclerView(recyclerView)
 

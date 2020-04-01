@@ -47,6 +47,7 @@ class ListOfMenusFragment : DaggerFragment() {
         val view= inflater.inflate(R.layout.fragment_list_of_menus, container, false)
         val recyclerView=view.recyclerViewListOfMenusFragment
         val newMenuBtn=view.addMenuListBtnListOfMenusFragment
+
         viewModel=activity.run { ViewModelProvider(this!!,provider)[GroceryViewModel::class.java] }
 
         viewModel.getMenus()
