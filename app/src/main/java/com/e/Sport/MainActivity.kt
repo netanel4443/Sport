@@ -35,7 +35,7 @@ class MainActivity : BaseActivity() {
         addFragmentTview.setOnClickListener{
             addFragment(ListOfMenusFragment(),R.id.frame_layout,"ListOfMenusFragment")
         }
-        testBtn.setOnClickListener{
+        trainingProgramTview.setOnClickListener{
             addFragment(ListOfProgramsFragment(),R.id.frame_layout,"ListOfProgramsFragment")
         }
 

@@ -25,9 +25,11 @@
         app:layout_constraintTop_toTopOf="parent"
         />
     <Button
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:id="@+id/immutableExercisesListTrainingProgramFragment"
+        android:background="@drawable/ic_menu_black"
+        app:layout_constraintBottom_toBottomOf="@id/programNameTrainingProgramFragment"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />

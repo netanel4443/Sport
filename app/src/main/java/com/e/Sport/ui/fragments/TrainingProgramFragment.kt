@@ -78,10 +78,6 @@ class TrainingProgramFragment : DaggerFragment() {
         .filter {immutableMap.isEmpty()  }
         .subscribe { viewModel.immutableExerciseList() }
 
-
-
-
-
         return view
     }
 
