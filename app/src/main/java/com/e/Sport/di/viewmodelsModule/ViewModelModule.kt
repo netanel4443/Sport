@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.e.Sport.di.anotations.ViewModelKey
 import com.e.Sport.viewmodels.GroceryViewModel
-import com.e.Sport.viewmodels.MainActivityViewModel
+import com.e.Sport.viewmodels.BmrCalculatorViewModel
 import com.e.Sport.viewmodels.ProgramViewModel
 import dagger.Binds
 import dagger.Module
@@ -16,8 +16,8 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(MainActivityViewModel::class)
-    abstract fun bindMainActivityViewModel(mainActivityViewModel: MainActivityViewModel):ViewModel
+    @ViewModelKey(BmrCalculatorViewModel::class)
+    abstract fun bindMainActivityViewModel(bmrCalculatorViewModel: BmrCalculatorViewModel):ViewModel
 
     @Binds
     @IntoMap

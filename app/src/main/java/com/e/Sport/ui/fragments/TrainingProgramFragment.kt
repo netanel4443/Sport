@@ -70,7 +70,6 @@ class TrainingProgramFragment : DaggerFragment() {
 
         addBtn.setOnClickListener {
             addOrUpdateExerciseDialog(Exercise())
-           // viewModel.addExercise(Exercise(UUID.randomUUID().toString()))
         }
 
         RxView.clicks(exerciseList)
@@ -84,7 +83,6 @@ class TrainingProgramFragment : DaggerFragment() {
     private fun initRecyclerView(recyclerView: RecyclerView) {
         recyclerView.layoutManager= LinearLayoutManager(activity,RecyclerView.VERTICAL,false)
         adapter= ExercisesRecyclerAdapter(exerciseHmap){ item->
-            val reps=item.reps;val sets=item.sets
             AddOrChangeExerciseDialog().showDialog(ctx,item){
                 adapter.notifyDataSetChanged()
             }
@@ -142,5 +140,4 @@ class TrainingProgramFragment : DaggerFragment() {
         }
         }
     }
-
-  }
+}

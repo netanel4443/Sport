@@ -7,7 +7,7 @@ import com.e.Sport.usecases.CalculationsUseCase
 import javax.inject.Inject
 
 
-class MainActivityViewModel @Inject constructor(
+class BmrCalculatorViewModel @Inject constructor(
     private val usecases:CalculationsUseCase):ViewModel() {
     private var measureType=MutableLiveData<Triple<String,String,String>>()
     private var bmr=MutableLiveData<Float>()
