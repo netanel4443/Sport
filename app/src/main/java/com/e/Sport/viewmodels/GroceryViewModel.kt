@@ -123,6 +123,7 @@ class GroceryViewModel @Inject constructor(
         override fun onCleared() {
             super.onCleared()
             compositeDisposable.dispose()
+            println("cleared")
         }
 
 }

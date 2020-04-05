@@ -133,10 +133,13 @@ class TrainingProgramFragment : DaggerFragment() {
         programNameTrainingProgramFragment.setText(name)
     }
     fun showConstExerciseList(list:LinkedHashMap<String,Boolean>){
-        ListDialog(ctx).show(list,exerciseHmap.keys.toHashSet()) { name: String, isChecked: Boolean ->
+        val checkedList=exerciseHmap.keys.toHashSet()
+        ListDialog(ctx).show(list,checkedList) { name: String, isChecked: Boolean ->
             when (isChecked) {
-            true->viewModel.addExercise(Exercise(name))
-            false->viewModel.deleteExercise(name)
+            true->{viewModel.addExercise(Exercise(name))
+                   checkedList.add(name) }
+            false->{viewModel.deleteExercise(name)
+                    checkedList.remove(name)}
         }
         }
     }

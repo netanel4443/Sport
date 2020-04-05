@@ -17,5 +17,4 @@ class SimpleTextDialog  {
             alertDialog.setMessage(message)
             alertDialog.show()
         }
-
 }

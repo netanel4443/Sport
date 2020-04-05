@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 class BmrCalculatorFragment : DaggerFragment() {
 
-    lateinit var ctx:Context
+    private var ctx:Context?=null
     lateinit var viewModel: BmrCalculatorViewModel
 
     @Inject lateinit var provider:ViewModelProvider.Factory
@@ -76,11 +76,16 @@ class BmrCalculatorFragment : DaggerFragment() {
 
     private fun initDropDown(sexSpinner:Spinner) {
         val items = listOf("male","female")
-        ArrayAdapter(ctx, R.layout.support_simple_spinner_dropdown_item, items)
+        ArrayAdapter(ctx!!, R.layout.support_simple_spinner_dropdown_item, items)
             .also {adapter->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 // Apply the adapter to the spinner
                 sexSpinner.adapter = adapter
             }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        ctx=null
     }
 }

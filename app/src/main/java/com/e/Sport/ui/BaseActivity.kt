@@ -8,17 +8,21 @@ import javax.inject.Inject
 
 abstract class BaseActivity:DaggerAppCompatActivity() {
 
+    protected val disposables=CompositeSubscription()
+
     @Inject lateinit var provider:ViewModelProvider.Factory
 
-   protected inline fun <reified T:ViewModel>getViewModel():T=
+ /*  protected inline fun <reified T:ViewModel> getViewModel():T{
+      val t:T by lazy { ViewModelProvider(this,provider)[T::class.java]}
+      return t
+    }*/
+
+    inline fun <reified T:ViewModel>getViewModel():T=
       ViewModelProvider(this,provider)[T::class.java]
 
-    companion object{
-        val disposeable=CompositeSubscription()
-    }
 
     override fun onDestroy() {
         super.onDestroy()
-        disposeable.clear()
+        disposables.clear()
     }
 }

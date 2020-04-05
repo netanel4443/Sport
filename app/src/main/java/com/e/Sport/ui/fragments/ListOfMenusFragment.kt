@@ -26,18 +26,18 @@ class ListOfMenusFragment : DaggerFragment() {
 
     @Inject lateinit var provider:ViewModelProvider.Factory
 
-    private lateinit var viewModel:GroceryViewModel
-    private lateinit var ctx:Context
     private lateinit var groceryListsAdapter:GroceryListsAdapter
     private lateinit var progressBar:CirclePrograssDialog
 
     private var groceryLists = HashMap<String, HashMap<String, GroceryItem>>()
     private var groceryListsName=HashSet<String>()
 
+    private  val viewModel:GroceryViewModel by lazy{
+        ViewModelProvider(requireActivity(),provider)[GroceryViewModel::class.java]}
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        ctx=context
-        progressBar= CirclePrograssDialog(ctx)
+        progressBar= CirclePrograssDialog(requireActivity())
     }
 
     override fun onCreateView(
@@ -47,8 +47,6 @@ class ListOfMenusFragment : DaggerFragment() {
         val view= inflater.inflate(R.layout.fragment_list_of_menus, container, false)
         val recyclerView=view.recyclerViewListOfMenusFragment
         val newMenuBtn=view.addMenuListBtnListOfMenusFragment
-
-        viewModel=activity.run { ViewModelProvider(this!!,provider)[GroceryViewModel::class.java] }
 
         viewModel.getMenus()
 
@@ -84,18 +82,18 @@ class ListOfMenusFragment : DaggerFragment() {
                     fragmentTransaction()
                 }
                 GroceryListsAdapter.ClickTypes.deleteClick->{
-                    SimpleTextDialog().show(ctx,"Delete $listName ?"){
+                    SimpleTextDialog().show(requireActivity(),"Delete $listName ?"){
                         viewModel.deleteMenu(listName)
                     }
                 }
             }
         }
-        recyclerView.layoutManager= LinearLayoutManager(ctx, RecyclerView.VERTICAL,false)
+        recyclerView.layoutManager= LinearLayoutManager(requireActivity(), RecyclerView.VERTICAL,false)
         recyclerView.adapter=groceryListsAdapter
         recyclerView.setHasFixedSize(true)
     }
 
     private fun fragmentTransaction(){
-        activity?.addFragment(GroceriesFragment(),R.id.frame_layout,"GroceriesFragment")
+        requireActivity().addFragment(GroceriesFragment(),R.id.frame_layout,"GroceriesFragment")
     }
 }

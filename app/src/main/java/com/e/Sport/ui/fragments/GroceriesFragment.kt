@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.e.Sport.MainActivity
 import com.e.Sport.R
 import com.e.Sport.ui.dialogs.AddItemDialog
 import com.e.Sport.data.GroceryItem
@@ -20,7 +21,8 @@ import kotlinx.android.synthetic.main.grocery_fragment.*
 import kotlinx.android.synthetic.main.grocery_fragment.view.*
 import javax.inject.Inject
 
-class GroceriesFragment : DaggerFragment() {
+class
+GroceriesFragment : DaggerFragment() {
 
     @Inject lateinit var provider: ViewModelProvider.Factory
 
@@ -34,7 +36,6 @@ class GroceriesFragment : DaggerFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         ctx=context
-
     }
 
     override fun onCreateView(
@@ -48,7 +49,7 @@ class GroceriesFragment : DaggerFragment() {
         val menuName=view.menuNameGroceryFragment
 
 
-        viewModel = ViewModelProvider(activity!!,provider).get(GroceryViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity(),provider).get(GroceryViewModel::class.java)
 
         initRecylerViewGroceryItems(recylerViewGroceryItems)
 

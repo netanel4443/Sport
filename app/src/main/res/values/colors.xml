@@ -2,7 +2,7 @@
 <resources>
 
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#2196F3</color>
+    <color name="colorPrimaryDark">#F44336</color>
     <color name="softBlue">#1881D8</color>
     <color name="appBackGround">#3b4a4d</color>
     <color name="colorAccent">#D81B60</color>

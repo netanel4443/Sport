@@ -20,12 +20,11 @@ class ListDialog(val context: Context) {
         val view=inflater.inflate(R.layout.list_dlalog,null)
         val recyclerView=view.recyclerviewListDialog
         val adapter=CheckBoxListAdapter(list, checkedList ){ it:String, isChecked->
-                onChecked(it,isChecked)
+               onChecked(it,isChecked)
         }
         recyclerView.adapter=adapter
         recyclerView.layoutManager=LinearLayoutManager(context,RecyclerView.VERTICAL,false)
         recyclerView.setHasFixedSize(true)
-
         alertDialog.setView(view)
         alertDialog.create().show()
     }

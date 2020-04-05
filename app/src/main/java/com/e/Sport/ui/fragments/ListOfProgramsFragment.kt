@@ -31,7 +31,7 @@ import javax.inject.Inject
 class ListOfProgramsFragment : DaggerFragment() {
 
     private lateinit var viewModel:ProgramViewModel
-    private lateinit var ctx:Context
+    private var ctx:Context?=null
     private  lateinit var adapter: GroceryListsAdapter
     private lateinit var progressBar:CirclePrograssDialog
     private var  programsNames=HashSet<String>()
@@ -42,7 +42,7 @@ class ListOfProgramsFragment : DaggerFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         ctx=context
-        progressBar= CirclePrograssDialog(ctx)
+        progressBar= CirclePrograssDialog(ctx!!)
     }
 
     override fun onCreateView(
@@ -94,7 +94,7 @@ class ListOfProgramsFragment : DaggerFragment() {
                        fragmentTransaction()
                 }
                 GroceryListsAdapter.ClickTypes.deleteClick -> {
-                         SimpleTextDialog().show(ctx,"Delete $name ?"){
+                         SimpleTextDialog().show(ctx!!,"Delete $name ?"){
                             viewModel.deleteProgram(name)
                          }
                 }
@@ -132,5 +132,9 @@ class ListOfProgramsFragment : DaggerFragment() {
     override fun onDestroy() {
         super.onDestroy()
         viewModel.resetState()
+    }
+    override fun onDetach() {
+        super.onDetach()
+        ctx=null
     }
 }
